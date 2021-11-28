@@ -1,0 +1,13 @@
+compatibility_date = "2021-28-11"
+name = "my-remix"
+type = "javascript"
+usage_model = 'bundled'
+
+account_id = ""
+workers_dev = true
+#zone_id = ""
+#route = ""
+
+[site]
+bucket = "./public"
+entry-point = "."

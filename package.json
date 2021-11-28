@@ -1,0 +1,20 @@
+{
+  "name": "my-remix",
+  "description": "My Remix Template",
+  "main": "dist/worker.mjs",
+  "repository": "https://github.com/mrmcc3/my-remix.git",
+  "author": "Michael McClintock <michael.mcclintock@hey.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "tailwindcss": "^2.2.19"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -o ./app/tailwind.css",
+    "dev:css": "tailwindcss -o ./app/tailwind.css --watch"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "sideEffects": false
+}
