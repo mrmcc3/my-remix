@@ -1,13 +1,19 @@
 import { createRequestHandler } from '@remix-run/server-runtime'
 import * as mime from 'mime/lite'
+// @ts-ignore
 import * as build from '../build'
+// @ts-ignore
 import manifestJSON from '__STATIC_CONTENT_MANIFEST'
 
 const manifest = JSON.parse(manifestJSON)
 const remixHandler = createRequestHandler(build, {})
 
+export interface Env {
+  __STATIC_CONTENT: KVNamespace
+}
+
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request: Request, env: Env, ctx: ExecutionContext) {
     const url = new URL(request.url)
 
     // handle public assets
