@@ -9,10 +9,10 @@ import {
 import type { LinksFunction } from 'remix'
 import type { ReactNode } from 'react'
 
-import tailwindUrl from '~/tailwind.css'
+import stylesUrl from '~/styles.css'
 
 export const links: LinksFunction = () => {
-  return [{ rel: 'stylesheet', href: tailwindUrl }]
+  return [{ rel: 'stylesheet', href: stylesUrl }]
 }
 
 export default function App() {

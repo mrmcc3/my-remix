@@ -3,5 +3,5 @@ node_modules
 /build
 /dist
 /public/static/build
-/app/tailwind.css
+/app/styles.css
 .idea

@@ -9,7 +9,7 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className="text-xl text-blue-600 pt-16 text-center">
+    <div className="text-2xl text-blue-600 font-bold pt-16 text-center">
       My Remix Template
     </div>
   )
