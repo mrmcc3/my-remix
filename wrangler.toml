@@ -5,13 +5,11 @@ usage_model = 'bundled'
 
 account_id = "6cb694a6c805ce2a4d49cc329f97e470"
 workers_dev = true
-#zone_id = ""
-#route = ""
 
 [site]
 bucket = "./public"
 entry-point = "."
 
 [build]
-command = "rm -rf src/build public/build && npm run build && esbuild src/worker.ts --outfile=dist/worker.mjs --define:process.env.NODE_ENV=\\\"production\\\" --external:__STATIC_CONTENT_MANIFEST --bundle --format=esm --minify"
+command = "rm -rf build public/static/build && npm run build && esbuild src/worker.ts --outfile=dist/worker.mjs --define:process.env.NODE_ENV=\\\"production\\\" --external:__STATIC_CONTENT_MANIFEST --bundle --format=esm --minify"
 upload = { format = "modules", main="./worker.mjs" }

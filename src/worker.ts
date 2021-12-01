@@ -30,8 +30,8 @@ export default {
           'Content-Type': mime.getType(url.pathname) || 'text/plain'
         })
 
-        // build is immutable
-        if (url.pathname.startsWith('/build/'))
+        // everything under static is assumed immutable
+        if (url.pathname.startsWith('/static/'))
           headers.set('Cache-Control', 'public, max-age=604800, immutable')
 
         return new Response(body, { headers })
