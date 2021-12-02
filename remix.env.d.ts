@@ -1,9 +1,16 @@
 /// <reference types="@remix-run/dev" />
-/// <reference types="@remix-run/cloudflare-workers/globals" />
-/// <reference types="@cloudflare/workers-types" />
 
 declare var process: {
   env: {
     NODE_ENV: string
   }
+}
+
+declare var isolateId: string
+
+interface Env {
+  __STATIC_CONTENT: KVNamespace
+  KV: KVNamespace
+  EXAMPLE: DurableObjectNamespace
+  NAME: string
 }

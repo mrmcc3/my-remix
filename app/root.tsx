@@ -1,4 +1,5 @@
 import {
+  Link,
   Links,
   Meta,
   Outlet,
@@ -56,7 +57,23 @@ function Document({ children }: { children: ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <div className="mx-auto max-w-3xl pt-12 flex flex-col space-y-4">
+          <div>
+            <Link to="/" className="text-2xl font-bold text-green-600">
+              My Remix Template
+            </Link>
+            <div>
+              Built for cloudflare workers.{' '}
+              <a
+                className="text-blue-600 hover:underline"
+                href="https://github.com/mrmcc3/my-remix"
+              >
+                mrmcc3/my-remix
+              </a>
+            </div>
+          </div>
+          {children}
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>

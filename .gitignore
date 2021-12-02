@@ -5,3 +5,4 @@ node_modules
 /public/static/build
 /app/styles.css
 .idea
+.mf
