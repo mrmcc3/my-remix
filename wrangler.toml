@@ -44,7 +44,7 @@ entry-point = "."
 
 # Domains
 
-[env.prod]
+[env.production]
 workers_dev = true # use route/zone_id for production
 #route = "https://example.com/*"
 #zone_id = "CF Dashboard"
