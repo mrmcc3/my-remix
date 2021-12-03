@@ -11,7 +11,9 @@ export async function assetHandler(request: Request, env: Env) {
   if (process.env.NODE_ENV === 'development') {
     // serve static assets in development with no caching
     if (url.pathname.startsWith('/static/')) {
-      const body = await env.__STATIC_CONTENT.get(url.pathname)
+      const body = await env.__STATIC_CONTENT.get(url.pathname, {
+        type: 'arrayBuffer'
+      })
       return new Response(body, { headers })
     }
   } else {
