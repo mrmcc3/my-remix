@@ -32,7 +32,7 @@ class_name = "ExampleDO"
 # build everything and upload public assets
 
 [build]
-command = "rm -rf dist/* build public/static/build && npm run build && esbuild src/worker.ts --outfile=dist/worker.mjs --define:process.env.NODE_ENV=\\\"production\\\" --external:__STATIC_CONTENT_MANIFEST --bundle --format=esm --minify"
+command = "rm -rf dist/* build public/static/build && yarn build && esbuild src/worker.ts --outfile=dist/worker.mjs --define:process.env.NODE_ENV=\\\"production\\\" --external:__STATIC_CONTENT_MANIFEST --bundle --format=esm --minify"
 upload = { format = "modules", main="./worker.mjs" }
 
 [site]

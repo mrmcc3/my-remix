@@ -5,7 +5,6 @@ export const loader: LoaderFunction = async ({ request, context: { env } }) => {
   const cf: IncomingRequestCfProperties = request.cf
   const { colo, city } = cf
   const cfRay = request.headers.get('cf-ray')
-  console.log(cf)
 
   // simulate a KV read
   let fromKV = await env.KV.get('msg')

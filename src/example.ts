@@ -12,7 +12,6 @@ export class ExampleDO {
   }
 
   async fetch(request: Request) {
-    console.log('got request')
     const { colo = 'N/A' } = await request.json()
     const coloKey = `colo:${colo}`
 
