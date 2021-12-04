@@ -21,7 +21,7 @@
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "concurrently": "^6.4.0",
-    "miniflare": "^1.4.1",
+    "miniflare": "^2.0.0-rc.2",
     "tailwindcss": "^2.2.19"
   },
   "scripts": {
@@ -31,7 +31,7 @@
     "watch:css": "npx tailwindcss -i src/styles.css -o app/styles.css -w",
     "watch:remix": "remix watch",
     "watch:worker": "esbuild src/worker.ts --outfile=dist/worker.mjs --define:process.env.NODE_ENV='\"development\"' --external:__STATIC_CONTENT_MANIFEST --bundle --format=esm --watch",
-    "watch:miniflare": "echo '{}' > dist/__STATIC_CONTENT_MANIFEST && miniflare --build-command --modules-rule Text=__STATIC_CONTENT_MANIFEST -w",
+    "watch:miniflare": "miniflare --build-command -w",
     "dev": "concurrently -n tailwind,remix,worker,miniflare \"yarn watch:css\" \"yarn watch:remix\" \"yarn watch:worker\" \"yarn watch:miniflare\""
   },
   "engines": {
