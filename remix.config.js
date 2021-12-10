@@ -3,8 +3,9 @@
  */
 module.exports = {
   appDirectory: 'app',
-  browserBuildDirectory: 'public/static/build',
+  assetsBuildDirectory: 'public/static/build',
   publicPath: '/static/build/',
   serverBuildDirectory: 'build',
+  serverModuleFormat: 'esm',
   devServerBroadcastDelay: 1000
 }

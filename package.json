@@ -6,23 +6,23 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@remix-run/cloudflare-workers": "^1.0.6",
-    "@remix-run/react": "^1.0.6",
+    "@remix-run/cloudflare-workers": "0.0.0-experimental-db4e08b8",
+    "@remix-run/react": "0.0.0-experimental-db4e08b8",
     "mime": "^3.0.0",
     "nanoid": "^3.1.30",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "remix": "^1.0.6"
+    "remix": "0.0.0-experimental-db4e08b8"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.2.0",
-    "@remix-run/dev": "^1.0.6",
+    "@remix-run/dev": "0.0.0-experimental-db4e08b8",
     "@types/mime": "^2.0.3",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "concurrently": "^6.4.0",
     "miniflare": "^2.0.0-rc.2",
-    "tailwindcss": "^2.2.19"
+    "tailwindcss": "^3.0.0"
   },
   "scripts": {
     "postinstall": "remix setup cloudflare-workers",
