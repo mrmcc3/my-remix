@@ -1,6 +1,7 @@
 import { createRequestHandler } from '@remix-run/server-runtime'
 import * as build from '../build'
 import { assetHandler } from './assets'
+import { nanoid } from 'nanoid'
 
 // Remix Handler
 
@@ -14,9 +15,14 @@ export default {
     const assetResponse = await assetHandler(request, env)
     if (assetResponse) return assetResponse
 
-    // TODO public assets
+    // for demo
+    if (!globalThis.isolateId) globalThis.isolateId = nanoid(8)
+
+    // handoff to remix
     return await remixHandler(request, { env, ctx })
   }
 }
 
 // Export Durable Objects
+
+export { ExampleDO } from './exampleDO'

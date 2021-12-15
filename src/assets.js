@@ -42,6 +42,7 @@ export async function assetHandler(request, env) {
 
   // cloudflare pages
   if (env.ASSETS) {
+    // TODO /static immutable
     const res = await env.ASSETS.fetch(request)
     if (res.status < 400) return res
   }

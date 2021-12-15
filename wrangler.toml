@@ -19,15 +19,15 @@ workers_dev = true
 [vars]
 NAME="development"
 
-#[[kv_namespaces]]
-#binding = "KV"
-#id = ""
-#preview_id = ""
+[[kv_namespaces]]
+binding = "KV"
+id = "ac218cc7d8af4e6b90ea7b9fa851ed51"
+preview_id = "ac218cc7d8af4e6b90ea7b9fa851ed51"
 
-#[durable_objects]
-#bindings = [
-#    { name = "EXAMPLE", class_name = "ExampleDO" },
-#]
+[durable_objects]
+bindings = [
+    { name = "EXAMPLE", class_name = "ExampleDO" },
+]
 
 [build]
 command = "rm -rf build public/_worker.js public/static/build && yarn build:wrangler"
