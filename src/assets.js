@@ -17,9 +17,6 @@ export async function assetHandler(request, env) {
       })
       return new Response(body, { headers })
     }
-  } else if (env.ASSETS) {
-    // cloudflare pages
-    return env.ASSETS.fetch(request)
   } else if (env.__STATIC_CONTENT) {
     // worker sites
     const key = manifest[url.pathname.substring(1)]
@@ -37,5 +34,12 @@ export async function assetHandler(request, env) {
 
       return new Response(body, { headers })
     }
+  } else if (env.ASSETS) {
+    // cloudflare pages
+    const now = new Date().getTime()
+    const res = await env.ASSETS.fetch(request)
+    if (res.ok) return res
+    const now2 = new Date().getTime()
+    return new Response(`${now2 - now}`)
   }
 }
