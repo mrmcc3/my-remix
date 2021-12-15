@@ -30,7 +30,7 @@ NAME="development"
 #]
 
 [build]
-command = "rm -rf build public/_worker.js public/static/build && yarn build"
+command = "rm -rf build public/_worker.js public/static/build && yarn build:wrangler"
 
 [build.upload]
 format = "modules"

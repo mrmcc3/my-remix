@@ -27,7 +27,8 @@
   },
   "scripts": {
     "postinstall": "remix setup cloudflare-workers",
-    "build": "tailwindcss -i src/global.css -o app/global.css --minify && remix build && esbuild --bundle src/worker.js --outfile=public/_worker.js --define:process.env.NODE_ENV='\"production\"' --external:__STATIC_CONTENT_MANIFEST --format=esm --minify"
+    "build": "tailwindcss -i src/global.css -o app/global.css --minify && remix build && esbuild --bundle src/worker.js --outfile=public/_worker.js --define:process.env.NODE_ENV='\"production\"' --format=esm --minify",
+    "build:wrangler": "yarn build --external:__STATIC_CONTENT_MANIFEST"
   },
   "sideEffects": false,
   "prettier": {
