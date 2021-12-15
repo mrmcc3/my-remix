@@ -7,6 +7,8 @@ export async function assetHandler(request, env) {
   const headers = new Headers()
   headers.set('Content-Type', mime.getType(url.pathname) || 'text/plain')
 
+  if (request.method !== 'GET') return
+
   if (process.env.NODE_ENV === 'development') {
     // serve static assets in development with no caching
     if (url.pathname.startsWith('/static/')) {
@@ -15,24 +17,25 @@ export async function assetHandler(request, env) {
       })
       return new Response(body, { headers })
     }
-  } else {
-    // handle public assets in production
-    if (env.__STATIC_CONTENT && request.method === 'GET') {
-      const key = manifest[url.pathname.substring(1)]
-      if (key) {
-        const body = await env.__STATIC_CONTENT.get(key, {
-          type: 'stream',
-          cacheTtl: 86400
-        })
+  } else if (env.ASSETS) {
+    // cloudflare pages
+    return env.ASSETS.fetch(request)
+  } else if (env.__STATIC_CONTENT) {
+    // worker sites
+    const key = manifest[url.pathname.substring(1)]
+    if (key) {
+      const body = await env.__STATIC_CONTENT.get(key, {
+        type: 'stream',
+        cacheTtl: 86400
+      })
 
-        // everything under static is assumed immutable
-        if (url.pathname.startsWith('/static/'))
-          headers.set('Cache-Control', 'public, max-age=31536000, immutable')
+      // everything under static is assumed immutable
+      if (url.pathname.startsWith('/static/'))
+        headers.set('Cache-Control', 'public, max-age=31536000, immutable')
 
-        // TODO etags for non static, public, assets
+      // TODO etags for non static, public, assets
 
-        return new Response(body, { headers })
-      }
+      return new Response(body, { headers })
     }
   }
 }
