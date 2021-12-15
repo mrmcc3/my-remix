@@ -5,37 +5,29 @@
   "author": "Michael McClintock <michael.mcclintock@hey.com>",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "node": ">=14"
+  },
   "dependencies": {
-    "@remix-run/cloudflare-workers": "0.0.0-experimental-db4e08b8",
-    "@remix-run/react": "0.0.0-experimental-db4e08b8",
+    "@remix-run/cloudflare-workers": "0.0.0-experimental-c73398fb",
+    "@remix-run/react": "0.0.0-experimental-c73398fb",
     "mime": "^3.0.0",
     "nanoid": "^3.1.30",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "remix": "0.0.0-experimental-db4e08b8"
+    "remix": "0.0.0-experimental-c73398fb"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^3.2.0",
-    "@remix-run/dev": "0.0.0-experimental-db4e08b8",
-    "@types/mime": "^2.0.3",
-    "@types/react": "^17.0.37",
-    "@types/react-dom": "^17.0.11",
+    "@remix-run/dev": "0.0.0-experimental-c73398fb",
+    "@tailwindcss/forms": "^0.4.0",
     "concurrently": "^6.4.0",
-    "miniflare": "^2.0.0-rc.2",
+    "esbuild": "0.13.14",
+    "miniflare": "2.0.0-next.3",
     "tailwindcss": "^3.0.0"
   },
   "scripts": {
     "postinstall": "remix setup cloudflare-workers",
-    "build": "tailwindcss -i src/styles.css -o app/styles.css --minify && remix build",
-    "build:worker": "esbuild src/worker.ts --outfile=dist/worker.mjs --define:process.env.NODE_ENV='\"production\"' --external:__STATIC_CONTENT_MANIFEST --bundle --format=esm --minify",
-    "watch:css": "npx tailwindcss -i src/styles.css -o app/styles.css -w",
-    "watch:remix": "remix watch",
-    "watch:worker": "esbuild src/worker.ts --outfile=dist/worker.mjs --define:process.env.NODE_ENV='\"development\"' --external:__STATIC_CONTENT_MANIFEST --bundle --format=esm --watch",
-    "watch:miniflare": "miniflare --build-command -w",
-    "dev": "concurrently -n tailwind,remix,worker,miniflare \"yarn watch:css\" \"yarn watch:remix\" \"yarn watch:worker\" \"yarn watch:miniflare\""
-  },
-  "engines": {
-    "node": ">=14"
+    "build": "tailwindcss -i src/global.css -o app/global.css --minify && remix build && esbuild --bundle src/worker.js --outfile=public/_worker.js --define:process.env.NODE_ENV='\"production\"' --external:__STATIC_CONTENT_MANIFEST --format=esm --minify"
   },
   "sideEffects": false,
   "prettier": {
