@@ -36,10 +36,7 @@ export async function assetHandler(request, env) {
     }
   } else if (env.ASSETS) {
     // cloudflare pages
-    const now = new Date().getTime()
     const res = await env.ASSETS.fetch(request)
-    if (res.ok) return res
-    const now2 = new Date().getTime()
-    return new Response(`${now2 - now}`)
+    if (res.status < 400) return res
   }
 }
