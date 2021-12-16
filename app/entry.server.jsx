@@ -8,12 +8,12 @@ export default function handleRequest(
   responseHeaders,
   remixContext
 ) {
+  // for demo
+  if (!globalThis.isolateId) globalThis.isolateId = nanoid(8)
+
   const markup = renderToString(
     <RemixServer context={remixContext} url={request.url} />
   )
-
-  // for demo
-  if (!globalThis.isolateId) globalThis.isolateId = nanoid(8)
 
   responseHeaders.set('Content-Type', 'text/html')
 
