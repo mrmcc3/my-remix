@@ -1,17 +1,17 @@
 import { nanoid } from 'nanoid'
 
 export class ExampleDO {
-  state: DurableObjectState
-  env: Env
-  colo: string
-  constructor(state: DurableObjectState, env: Env) {
+  state
+  env
+  colo
+  constructor(state, env) {
     this.state = state
     this.env = env
     this.colo = ''
     if (!globalThis.isolateId) globalThis.isolateId = nanoid(8)
   }
 
-  async fetch(request: Request) {
+  async fetch(request) {
     const { colo = 'N/A' } = await request.json()
     const coloKey = `colo:${colo}`
 
@@ -28,7 +28,7 @@ export class ExampleDO {
     }
 
     // bump the call count
-    const coloCount: number = (await this.state.storage.get(coloKey)) || 0
+    const coloCount = (await this.state.storage.get(coloKey)) || 0
     await this.state.storage.put(coloKey, coloCount + 1)
 
     // get all the counts

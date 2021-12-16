@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "__STATIC_CONTENT_MANIFEST": ["src/manifest.js"],
+      "~app/*": ["app/*"],
+      "~src/*": ["src/*"]
+    }
+  }
+}

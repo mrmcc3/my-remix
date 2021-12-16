@@ -1,13 +1,8 @@
-import { json, LoaderFunction, MetaFunction } from 'remix'
+import { json } from 'remix'
 import { useLoaderData } from '@remix-run/react'
 
-export const loader: LoaderFunction = async ({
-  params: { name },
-  request,
-  context: { env }
-}) => {
-  const cf: IncomingRequestCfProperties = request.cf
-  const { colo, city } = cf
+export async function loader({ params: { name }, request, context: { env } }) {
+  const { colo, city } = request.cf
   const cfRay = request.headers.get('cf-ray')
 
   if (!name) throw new Response('no name provided')
@@ -34,7 +29,7 @@ export const loader: LoaderFunction = async ({
   })
 }
 
-export const meta: MetaFunction = () => {
+export function meta() {
   return {
     title: 'DO Example',
     description: 'Reading from durable objects'
@@ -57,7 +52,7 @@ export default function DO() {
     counts
   } = useLoaderData()
   return (
-    <div className="pt-8 space-y-2">
+    <div className="max-w-5xl mx-auto px-4 pt-8 space-y-2">
       <p>
         You requested this page from{' '}
         <span className={spanStyle}>{city || colo}</span>.

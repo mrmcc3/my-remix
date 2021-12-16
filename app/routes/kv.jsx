@@ -1,9 +1,8 @@
-import { json, LoaderFunction, MetaFunction } from 'remix'
+import { json } from 'remix'
 import { useLoaderData } from '@remix-run/react'
 
-export const loader: LoaderFunction = async ({ request, context: { env } }) => {
-  const cf: IncomingRequestCfProperties = request.cf
-  const { colo, city } = cf
+export async function loader({ request, context: { env } }) {
+  const { colo, city } = request.cf
   const cfRay = request.headers.get('cf-ray')
 
   // simulate a KV read
@@ -23,7 +22,7 @@ export const loader: LoaderFunction = async ({ request, context: { env } }) => {
   })
 }
 
-export const meta: MetaFunction = () => {
+export function meta() {
   return {
     title: 'KV Example',
     description: 'Reading from KV'
@@ -35,7 +34,7 @@ const spanStyle = 'bg-gray-100 px-2 py-0.5 rounded font-semibold font-mono'
 export default function KV() {
   const { envName, city, colo, isolateId, fromKV, cfRay } = useLoaderData()
   return (
-    <div className="pt-8 space-y-2">
+    <div className="max-w-5xl mx-auto px-4 pt-8 space-y-2">
       <p>
         You requested this page from{' '}
         <span className={spanStyle}>{city || colo}</span>.

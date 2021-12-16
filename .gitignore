@@ -1,8 +1,8 @@
 node_modules
 /.cache
+/.mf
 /build
-/dist
 /public/static/build
-/app/styles.css
+/public/_worker.js
+/app/global.css
 .idea
-.mf

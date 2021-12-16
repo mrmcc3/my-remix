@@ -1,67 +1,64 @@
 ### GLOBAL
 
-compatibility_date = "2021-12-02" # https://developers.cloudflare.com/workers/platform/compatibility-dates
+compatibility_date = "2021-12-15"
 name = "my-remix"
 type = "javascript"
-account_id = "6cb694a6c805ce2a4d49cc329f97e470" # CF Dashboard
-usage_model = 'bundled' #https://developers.cloudflare.com/workers/platform/pricing#workers
-
+account_id = "6cb694a6c805ce2a4d49cc329f97e470"
 
 ### DEVELOPMENT
 
-# Domains
-
-workers_dev = true # <name>.<your-subdomain>.workers.dev
+workers_dev = true
 #route = "https://example.com/*"
-#zone_id = "CF Dashboard"
-
-# Bindings. Accessible under env in worker & durable object code
+#zone_id = ""
 
 [vars]
-NAME="development" # env.NAME
+NAME="workers-development"
 
 [[kv_namespaces]]
-binding = "KV" # env.KV
-id = "ac218cc7d8af4e6b90ea7b9fa851ed51" # create with wrangler or CF Dashboard > Workers -> KV
+binding = "KV"
+id = "ac218cc7d8af4e6b90ea7b9fa851ed51"
 preview_id = "ac218cc7d8af4e6b90ea7b9fa851ed51"
 
-[[durable_objects.bindings]]
-name = "EXAMPLE" # env.EXAMPLE
-class_name = "ExampleDO"
-
-# build everything and upload public assets
+[durable_objects]
+bindings = [
+    { name = "EXAMPLE", class_name = "ExampleDO" },
+]
 
 [build]
-command = "rm -rf dist/* build public/static/build && yarn build && esbuild src/worker.ts --outfile=dist/worker.mjs --define:process.env.NODE_ENV=\\\"production\\\" --external:__STATIC_CONTENT_MANIFEST --bundle --format=esm --minify"
-upload = { format = "modules", main="./worker.mjs" }
+command = "rm -rf build public/_worker.js public/static/build && yarn build:wrangler"
+
+[build.upload]
+format = "modules"
+dir = "public"
+main = "./_worker.js"
+
+[[build.upload.rules]]
+type = "ESModule"
+globs = ["**/*.js"]
 
 [site]
 bucket = "./public"
 entry-point = "."
-
+exclude = ["/_*"]
 
 ### PRODUCTION
 
-# Domains
-
 [env.production]
-workers_dev = true # use route/zone_id for production
+workers_dev = true
 #route = "https://example.com/*"
-#zone_id = "CF Dashboard"
-
-# Bindings. Accessible under env in worker & durable object code
+#zone_id = ""
 
 [env.production.vars]
-NAME="production" # env.name
+NAME="workers-production"
 
 [[env.production.kv_namespaces]]
-binding = "KV" # env.KV
-id = "966631e52a2e40b3b03ac11f4bf9deeb" # create with wrangler or CF Dashboard > Workers -> KV
+binding = "KV"
+id = "966631e52a2e40b3b03ac11f4bf9deeb"
 
-[[env.production.durable_objects.bindings]]
-name = "EXAMPLE" # env.EXAMPLE
-class_name = "ExampleDO"
-
+[env.production.durable_objects]
+bindings = [
+    { name = "EXAMPLE", class_name = "ExampleDO" },
+]
 
 ### MINIFLARE
 
