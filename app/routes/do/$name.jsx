@@ -52,7 +52,7 @@ export default function DO() {
     counts
   } = useLoaderData()
   return (
-    <div className="max-w-5xl mx-auto px-4 pt-8 space-y-2">
+    <>
       <p>
         You requested this page from{' '}
         <span className={spanStyle}>{city || colo}</span>.
@@ -77,7 +77,7 @@ export default function DO() {
       </p>
       <ul>
         {Object.entries(counts).map(([colo, count]) => (
-          <li key={colo} className="space-y-1">
+          <li key={colo}>
             <span className={spanStyle}>
               {colo.substring(5)} - {count}
             </span>
@@ -89,6 +89,6 @@ export default function DO() {
         This is the <span className={spanStyle}>{envName}</span> environment.
         request id is <span className={spanStyle}>{cfRay}</span>
       </p>
-    </div>
+    </>
   )
 }

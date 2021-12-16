@@ -34,7 +34,7 @@ const spanStyle = 'bg-gray-100 px-2 py-0.5 rounded font-semibold font-mono'
 export default function KV() {
   const { envName, city, colo, isolateId, fromKV, cfRay } = useLoaderData()
   return (
-    <div className="max-w-5xl mx-auto px-4 pt-8 space-y-2">
+    <>
       <p>
         You requested this page from{' '}
         <span className={spanStyle}>{city || colo}</span>.
@@ -52,6 +52,6 @@ export default function KV() {
         This is the <span className={spanStyle}>{envName}</span> environment.
         request id is <span className={spanStyle}>{cfRay}</span>
       </p>
-    </div>
+    </>
   )
 }
