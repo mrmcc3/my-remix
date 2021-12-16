@@ -218,18 +218,18 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@remix-run/cloudflare-workers@0.0.0-experimental-c73398fb":
-  version "0.0.0-experimental-c73398fb"
-  resolved "https://registry.yarnpkg.com/@remix-run/cloudflare-workers/-/cloudflare-workers-0.0.0-experimental-c73398fb.tgz#ba69826eb6e6b624cfdeccf325a761b0d279751a"
-  integrity sha512-/5x23KHyPltsgpZX8lWJevHcqZZqIh1fRCPWDPzWsKWha+5WxYYS9t47WJEvF3WlXM35WDnmFTaRL7i9SV3FxQ==
+"@remix-run/cloudflare-workers@0.0.0-experimental-f88eb375":
+  version "0.0.0-experimental-f88eb375"
+  resolved "https://registry.yarnpkg.com/@remix-run/cloudflare-workers/-/cloudflare-workers-0.0.0-experimental-f88eb375.tgz#d7ada3005fa7b02a6006eacd6710aa95ca447c73"
+  integrity sha512-QGBsn1DVcL1J9LdC+jfAiynXrltg2ZB3ZagosEptZCnbGYazKg66NpycyJMoNEfpCS4PfKpcai1qqzDwbOnx/w==
   dependencies:
     "@cloudflare/kv-asset-handler" "^0.1.3"
-    "@remix-run/server-runtime" "0.0.0-experimental-c73398fb"
+    "@remix-run/server-runtime" "0.0.0-experimental-f88eb375"
 
-"@remix-run/dev@0.0.0-experimental-c73398fb":
-  version "0.0.0-experimental-c73398fb"
-  resolved "https://registry.yarnpkg.com/@remix-run/dev/-/dev-0.0.0-experimental-c73398fb.tgz#0f53746e6491d2425a78474c076e7537488fa712"
-  integrity sha512-qo+pGipXUqaPfCt6ch9+oASzJlz28UVJloNmPPh8VFBisFcqzy0B2FXDo47KwUwH39tkNTe4UkneMFdXZ2cXbg==
+"@remix-run/dev@0.0.0-experimental-f88eb375":
+  version "0.0.0-experimental-f88eb375"
+  resolved "https://registry.yarnpkg.com/@remix-run/dev/-/dev-0.0.0-experimental-f88eb375.tgz#bb65602a2c90e5eab70b3ce5ddf40d64548c586e"
+  integrity sha512-JOapX+5/u90KiQlZNHV6BoqEYbas2qCG8wXe//7Jn3XIJkU+kc7RXJ1nQ8IyudI74rEVVcKEyIV52IEc2VE2aQ==
   dependencies:
     cacache "^15.0.5"
     chokidar "^3.5.1"
@@ -237,6 +237,7 @@
     fs-extra "^10.0.0"
     lodash.debounce "^4.0.8"
     meow "^7.1.1"
+    minimatch "^3.0.4"
     pretty-ms "^7.0.1"
     read-package-json-fast "^2.0.2"
     remark-frontmatter "^4.0.0"
@@ -245,17 +246,17 @@
     ws "^7.4.5"
     xdm "^2.0.0"
 
-"@remix-run/react@0.0.0-experimental-c73398fb":
-  version "0.0.0-experimental-c73398fb"
-  resolved "https://registry.yarnpkg.com/@remix-run/react/-/react-0.0.0-experimental-c73398fb.tgz#42bc57db4df96a5f6de345f7f55afaf0e6bb09d1"
-  integrity sha512-g03+7uEvZvm808eU8WyAkRyG7iJVeffKdty1SzYoe0N9EElMfNIR2ftNJnJ1WGKfEXVeHVMIkrply/a/WlmL4g==
+"@remix-run/react@0.0.0-experimental-f88eb375":
+  version "0.0.0-experimental-f88eb375"
+  resolved "https://registry.yarnpkg.com/@remix-run/react/-/react-0.0.0-experimental-f88eb375.tgz#897093d3314156cfce9040bcfb5541718cb2cce2"
+  integrity sha512-DiSaz8rMQ9olgh77mzjXvMZ22cGg8NU+Ga19x8rf3Xsilc3u6xJui/pc+mxnKjSkjj/YSSfP2jw0Nex/sb0mBQ==
   dependencies:
     react-router-dom "^6.1.1"
 
-"@remix-run/server-runtime@0.0.0-experimental-c73398fb":
-  version "0.0.0-experimental-c73398fb"
-  resolved "https://registry.yarnpkg.com/@remix-run/server-runtime/-/server-runtime-0.0.0-experimental-c73398fb.tgz#31635d2ccb8d3a89addee372105f37ac0f1bcc97"
-  integrity sha512-d+uozFmArJnmU+P0G436PO2d/oCZJFVrU7qe44HK92yLZQBPmWPak42iDCrbjCXjURFvTtG3qUV63Z5ZuSog3g==
+"@remix-run/server-runtime@0.0.0-experimental-f88eb375":
+  version "0.0.0-experimental-f88eb375"
+  resolved "https://registry.yarnpkg.com/@remix-run/server-runtime/-/server-runtime-0.0.0-experimental-f88eb375.tgz#f1f1cb5fc4c235b12ca62fc9011e14da83943400"
+  integrity sha512-1r9YL6ri8p/5Inj5dgl4PXPKQnBbLOkhudKr3n/v4KsSkfIydrWVqAcxrAA1hbnkFFDF4Z6OGZ8/R0PInyJFJQ==
   dependencies:
     "@types/cookie" "^0.4.0"
     cookie "^0.4.1"
@@ -2333,7 +2334,7 @@ postcss-nested@5.0.6:
   dependencies:
     postcss-selector-parser "^6.0.6"
 
-postcss-selector-parser@^6.0.6:
+postcss-selector-parser@^6.0.6, postcss-selector-parser@^6.0.7:
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-6.0.7.tgz#48404830a635113a71fd79397de8209ed05a66fc"
   integrity sha512-U+b/Deoi4I/UmE6KOVPpnhS7I7AYdKbhGcat+qTQ27gycvaACvNEw11ba6RrkwVmDVRW7sigWgLj4/KbbJjeDA==
@@ -2513,10 +2514,10 @@ remark-rehype@^9.0.0:
     mdast-util-to-hast "^11.0.0"
     unified "^10.0.0"
 
-remix@0.0.0-experimental-c73398fb:
-  version "0.0.0-experimental-c73398fb"
-  resolved "https://registry.yarnpkg.com/remix/-/remix-0.0.0-experimental-c73398fb.tgz#8dcd7f581df8bb3b3130c948a9f1519addc52491"
-  integrity sha512-Cjjf7JPfbUQx9gwBqDx4jRRU0Z7Ie5UBCXfbOY7/COx7LJRoDPQU5qDjSes7cWhBDx/y2DDW1ET3dDDriDerXA==
+remix@0.0.0-experimental-f88eb375:
+  version "0.0.0-experimental-f88eb375"
+  resolved "https://registry.yarnpkg.com/remix/-/remix-0.0.0-experimental-f88eb375.tgz#4ae484cb8587fd5c23130293a2afe2f06e7f0346"
+  integrity sha512-PLgICaKZKuzK5zRGO/lnPyYRaxacY20Lzu8In16iISqEOmy0OX/z0KVnCEF3trD8ayN0z3GRqq7kZUAtdqLDFw==
   dependencies:
     fs-extra "^10.0.0"
 
@@ -2765,10 +2766,10 @@ supports-color@^8.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-tailwindcss@^3.0.0:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.0.2.tgz#9eea4c6dbe8d6d2c11363d313f4a4eba2baeb652"
-  integrity sha512-i1KpjYnGYftjzdAth6jA5iMPjhxpUkk5L6DafhfnQs+KiiWaThYxmk47Weh4oFH1mZqP6MuiQNHxtoRVPOraLg==
+tailwindcss@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.0.6.tgz#1981a0bb55919c0af566c98870ab2ec672599efb"
+  integrity sha512-+CA2f09rbHFDsdQ1iDvsOGbF1tZFmyPoRhUeaF9/5FRT5GYObtp+UjTSCdmeDcu6T90bx4WAaOkddYFPBkjbAA==
   dependencies:
     arg "^5.0.1"
     chalk "^4.1.2"
@@ -2786,7 +2787,7 @@ tailwindcss@^3.0.0:
     postcss-js "^3.0.3"
     postcss-load-config "^3.1.0"
     postcss-nested "5.0.6"
-    postcss-selector-parser "^6.0.6"
+    postcss-selector-parser "^6.0.7"
     postcss-value-parser "^4.2.0"
     quick-lru "^5.1.1"
     resolve "^1.20.0"
