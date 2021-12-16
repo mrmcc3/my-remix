@@ -22,13 +22,19 @@
     "@tailwindcss/forms": "^0.4.0",
     "concurrently": "^6.4.0",
     "esbuild": "0.13.14",
-    "miniflare": "2.0.0-next.3",
+    "miniflare": "^2.0.0-rc.3",
     "tailwindcss": "^3.0.6"
   },
   "scripts": {
     "postinstall": "remix setup cloudflare-workers",
     "build": "tailwindcss -i src/global.css -o app/global.css --minify && remix build && esbuild --bundle src/worker.js --outfile=public/_worker.js --define:process.env.NODE_ENV='\"production\"' --format=esm --minify",
-    "build:wrangler": "yarn build --external:__STATIC_CONTENT_MANIFEST"
+    "build:wrangler": "yarn build --external:__STATIC_CONTENT_MANIFEST",
+    "watch:css": "npx tailwindcss -i src/global.css -o app/global.css -w",
+    "watch:remix": "remix watch",
+    "watch:worker": "esbuild --bundle src/worker.js --outfile=public/_worker.js --define:process.env.NODE_ENV='\"development\"' --external:__STATIC_CONTENT_MANIFEST --format=esm --watch",
+    "watch:miniflare": "miniflare --build-command -w",
+    "dev": "concurrently -n tailwind,remix,worker,miniflare \"yarn watch:css\" \"yarn watch:remix\" \"yarn watch:worker\" \"yarn watch:miniflare\""
+
   },
   "sideEffects": false,
   "prettier": {

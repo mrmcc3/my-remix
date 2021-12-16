@@ -1,5 +1,6 @@
 node_modules
 /.cache
+/.mf
 /build
 /public/static/build
 /public/_worker.js

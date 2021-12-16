@@ -1,7 +1,7 @@
 ### GLOBAL
 
 compatibility_date = "2021-12-15"
-name = "my-remix-dev"
+name = "my-remix"
 type = "javascript"
 account_id = "6cb694a6c805ce2a4d49cc329f97e470"
 
@@ -17,7 +17,7 @@ workers_dev = true
 # Bindings.
 
 [vars]
-NAME="development"
+NAME="workers-development"
 
 [[kv_namespaces]]
 binding = "KV"
@@ -44,7 +44,7 @@ globs = ["**/*.js"]
 [site]
 bucket = "./public"
 entry-point = "."
-exclude = ["_worker.js"]
+exclude = ["/_*"]
 
 ### PRODUCTION
 

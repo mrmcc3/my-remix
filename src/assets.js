@@ -6,14 +6,22 @@ export async function assetHandler(request, env) {
   if (request.method !== 'GET') return
   const url = new URL(request.url)
 
+  // development
+  if (process.env.NODE_ENV === 'development') {
+    if (url.pathname.startsWith('/static/')) {
+      const headers = new Headers()
+      headers.set('Content-Type', mime.getType(url.pathname) || 'text/plain')
+      const body = await env.__STATIC_CONTENT.get(url.pathname.substring(1), {
+        type: 'arrayBuffer'
+      })
+      return new Response(body, { headers })
+    }
+  }
+
   // cloudflare pages
   if (env.ASSETS) {
     const res = await env.ASSETS.fetch(request)
-    if (res.status >= 400) return
-    const headers = new Headers(res.headers)
-    if (url.pathname.startsWith('/static/'))
-      headers.set('Cache-Control', 'public, max-age=31536000, immutable')
-    return new Response(res.body, { headers, status: res.status })
+    return res.status < 400 ? res : null
   }
 
   // worker sites
@@ -32,18 +40,6 @@ export async function assetHandler(request, env) {
 
       // TODO etags for non static, public, assets
 
-      return new Response(body, { headers })
-    }
-  }
-
-  // development
-  if (process.env.NODE_ENV === 'development') {
-    if (url.pathname.startsWith('/static/')) {
-      const headers = new Headers()
-      headers.set('Content-Type', mime.getType(url.pathname) || 'text/plain')
-      const body = await env.__STATIC_CONTENT.get(url.pathname, {
-        type: 'arrayBuffer'
-      })
       return new Response(body, { headers })
     }
   }
