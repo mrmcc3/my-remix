@@ -66,7 +66,7 @@ function Document({ children }) {
       </head>
       <body className="h-full bg-white">
         <Header />
-        {children}
+        <div className="mx-auto px-4 py-8 prose">{children}</div>
         <Footer />
         <ScrollRestoration />
         <Scripts />
