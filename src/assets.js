@@ -32,14 +32,10 @@ export async function assetHandler(request, env) {
       headers.set('Content-Type', mime.getType(url.pathname) || 'text/plain')
       if (url.pathname.startsWith('/static/'))
         headers.set('Cache-Control', 'public, max-age=31536000, immutable')
-
       const body = await env.__STATIC_CONTENT.get(key, {
         type: 'stream',
         cacheTtl: 86400
       })
-
-      // TODO etags for non static, public, assets
-
       return new Response(body, { headers })
     }
   }

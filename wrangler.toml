@@ -5,16 +5,11 @@ name = "my-remix"
 type = "javascript"
 account_id = "6cb694a6c805ce2a4d49cc329f97e470"
 
-
 ### DEVELOPMENT
-
-# Domains
 
 workers_dev = true
 #route = "https://example.com/*"
 #zone_id = ""
-
-# Bindings.
 
 [vars]
 NAME="workers-development"
@@ -47,6 +42,23 @@ entry-point = "."
 exclude = ["/_*"]
 
 ### PRODUCTION
+
+[env.production]
+workers_dev = true
+#route = "https://example.com/*"
+#zone_id = ""
+
+[env.production.vars]
+NAME="workers-production"
+
+[[env.production.kv_namespaces]]
+binding = "KV"
+id = "966631e52a2e40b3b03ac11f4bf9deeb"
+
+[env.production.durable_objects]
+bindings = [
+    { name = "EXAMPLE", class_name = "ExampleDO" },
+]
 
 ### MINIFLARE
 
