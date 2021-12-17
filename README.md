@@ -1,8 +1,8 @@
 ## My Remix
 
 A Template using Remix & Tailwind targeting Cloudflare Workers & Pages. With demos 
-showcasing [KV storage](https://developers.cloudflare.com/workers/learning/how-kv-works)
-and [durable objects](https://developers.cloudflare.com/workers/learning/using-durable-objects) with remix.
+showcasing [KV storage](https://my-remix.pages.dev/kv)
+and [durable objects](https://my-remix.pages.dev/do/the-one) with remix.
 
 The same remix code can be deployed as a [worker site](https://developers.cloudflare.com/workers/platform/sites)
 using [wrangler v1](https://github.com/cloudflare/wrangler). Or using [Cloudflare Pages](https://developers.cloudflare.com/pages/)
