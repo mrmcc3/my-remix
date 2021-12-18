@@ -1,6 +1,5 @@
 import { renderToString } from 'react-dom/server'
 import { RemixServer } from 'remix'
-import { nanoid } from 'nanoid'
 
 export default function handleRequest(
   request,

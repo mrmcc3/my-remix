@@ -27,14 +27,12 @@ Some setup is required.
 
 ### FAQs
 
-#### Why not use the official remix cloudflare support?
-Currently, it doesn't use the modules format which means you can't use
-durable objects which to me is one of the most exciting/unique parts of the
-cloudflare worker offering. The other reason is exploration, I wanted to
-control the static asset caching and wire up remix manually to see how it works.
+#### Why not use the official remix cloudflare template?
 
-**NOTE** currently this does mean cookie signing and remix sessions don't work. It's
-early days, as cloudflare and remix evolve I'm sure it'll get better.
+Currently, it doesn't use the modules format for workers which means you can't use
+durable objects one of the more exciting/unique parts of the cloudflare worker offering. 
+The other reason is exploration, I wanted to control the static asset caching and 
+wire up remix manually to see how it works.
 
 #### Why target both Cloudflare Pages and Worker Sites.
 
@@ -45,7 +43,7 @@ a way to create durable objects in the first place.
 
 It's just too early. Worker sites via wrangler seems more production ready. It's not like
 workers sites are inferior in fact I would not be surprised if CF Pages is built on top of
-worker sites / kv-asset-handler.
+workers and KV.
 
 #### Why wrangler v1 and not v2?
 

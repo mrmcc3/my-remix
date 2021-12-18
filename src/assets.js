@@ -8,13 +8,18 @@ export async function assetHandler(request, env) {
 
   // development
   if (process.env.NODE_ENV === 'development') {
-    if (url.pathname.startsWith('/static/')) {
-      const headers = new Headers()
-      headers.set('Content-Type', mime.getType(url.pathname) || 'text/plain')
+    try {
       const body = await env.__STATIC_CONTENT.get(url.pathname.substring(1), {
         type: 'arrayBuffer'
       })
-      return new Response(body, { headers })
+      if (!body) return null
+      return new Response(body, {
+        headers: {
+          'Content-Type': mime.getType(url.pathname) || 'text/plain'
+        }
+      })
+    } catch (e) {
+      return null
     }
   }
 
@@ -34,7 +39,7 @@ export async function assetHandler(request, env) {
         headers.set('Cache-Control', 'public, max-age=31536000, immutable')
       const body = await env.__STATIC_CONTENT.get(key, {
         type: 'stream',
-        cacheTtl: 86400
+        cacheTtl: 31536000
       })
       return new Response(body, { headers })
     }

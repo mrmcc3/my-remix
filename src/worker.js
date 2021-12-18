@@ -2,6 +2,8 @@ import { createRequestHandler } from '@remix-run/server-runtime'
 import * as build from '../build'
 import { assetHandler } from './assets'
 import { nanoid } from 'nanoid'
+import { installGlobals } from '@remix-run/cloudflare-workers/globals'
+installGlobals()
 
 // Remix Handler
 
