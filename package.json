@@ -12,7 +12,6 @@
   "dependencies": {
     "@remix-run/cloudflare": "^1.4.3",
     "@remix-run/react": "^1.4.3",
-    "nanoid": "^3.1.30",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
