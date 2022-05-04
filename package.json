@@ -23,7 +23,7 @@
     "@tailwindcss/typography": "^0.5.2",
     "npm-run-all": "^4.1.5",
     "tailwindcss": "^3.0.24",
-    "wrangler": "^0.0.28"
+    "wrangler": "^0.0.29"
   },
   "scripts": {
     "css:build": "tailwindcss -i app/styles.css -o app/global.css --minify",
@@ -31,7 +31,7 @@
     "remix:build": "CF_PAGES=1 remix build",
     "remix:watch": "CF_PAGES=1 remix watch",
     "remix:dev": "remix dev",
-    "wrangler:dev": "wrangler pages dev public --do EXAMPLE=ExampleDO",
+    "wrangler:dev": "wrangler pages dev public --do EXAMPLE=ExampleDO --kv KV",
     "build": "run-s css:build remix:build",
     "dev-cf": "run-p css:watch remix:watch wrangler:dev",
     "dev": "run-p css:watch remix:dev"

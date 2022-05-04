@@ -13,10 +13,9 @@ export async function loader({ request, context: { env } }) {
   }
 
   return json({
-    envName: env.NAME,
     colo,
     city,
-    isolateId,
+    isolateId: globalThis.isolateId,
     cfRay,
     fromKV,
   });
@@ -32,7 +31,7 @@ export function meta() {
 const spanStyle = "bg-gray-100 px-2 py-0.5 rounded font-semibold font-mono";
 
 export default function KV() {
-  const { envName, city, colo, isolateId, fromKV, cfRay } = useLoaderData();
+  const { city, colo, fromKV, cfRay } = useLoaderData();
   return (
     <>
       <p>
@@ -41,15 +40,13 @@ export default function KV() {
       </p>
       <p>
         A cloudflare worker in the <span className={spanStyle}>{colo}</span>{" "}
-        datacenter rendered this page in a V8 isolate with id{" "}
-        <span className={spanStyle}>{isolateId}</span>.
+        datacenter rendered this page.
       </p>
       <p>
         This message was read from KV storage:{" "}
         <span className={spanStyle}>{fromKV}</span>
       </p>
       <p>
-        This is the <span className={spanStyle}>{envName}</span> environment.
         request id is <span className={spanStyle}>{cfRay}</span>
       </p>
     </>

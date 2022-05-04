@@ -19,10 +19,8 @@ export async function loader({ params: { name }, request, context: { env } }) {
   const data = await res.json();
 
   return json({
-    envName: env.NAME,
     colo,
     city,
-    isolateId,
     cfRay,
     name,
     ...data,
@@ -39,18 +37,8 @@ export function meta() {
 const spanStyle = "bg-gray-100 px-2 py-0.5 rounded font-semibold font-mono";
 
 export default function DO() {
-  const {
-    envName,
-    city,
-    colo,
-    isolateId,
-    cfRay,
-    name,
-    doIsolateId,
-    currentColo,
-    creationColo,
-    counts,
-  } = useLoaderData();
+  const { city, colo, cfRay, name, currentColo, creationColo, counts } =
+    useLoaderData();
   return (
     <>
       <p>
@@ -59,16 +47,14 @@ export default function DO() {
       </p>
       <p>
         A cloudflare worker in the <span className={spanStyle}>{colo}</span>{" "}
-        datacenter rendered this page in a V8 isolate with id{" "}
-        <span className={spanStyle}>{isolateId}</span>.
+        datacenter rendered this page.
       </p>
       <p>
         The worker made a request to the Durable Object named{" "}
         <span className={spanStyle}>{name}</span> which is running in the
         <span className={spanStyle}>{currentColo}</span> datacenter and was
         first created in
-        <span className={spanStyle}>{creationColo}</span>. It's running in the
-        V8 isolate <span className={spanStyle}>{doIsolateId}</span>
+        <span className={spanStyle}>{creationColo}</span>.
       </p>
 
       <p>
@@ -86,7 +72,6 @@ export default function DO() {
       </ul>
 
       <p>
-        This is the <span className={spanStyle}>{envName}</span> environment.
         request id is <span className={spanStyle}>{cfRay}</span>
       </p>
     </>
