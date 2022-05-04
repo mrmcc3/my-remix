@@ -1,9 +1,9 @@
-import { Link, NavLink } from 'remix'
+import { Link, NavLink } from "@remix-run/react";
 
 function linkStyle({ isActive }) {
   return `leading-relaxed rounded px-2 ${
-    isActive ? 'text-gray-900' : 'text-gray-600 hover:text-gray-800'
-  }`
+    isActive ? "text-gray-900" : "text-gray-600 hover:text-gray-800"
+  }`;
 }
 
 export function Header() {
@@ -23,5 +23,5 @@ export function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }

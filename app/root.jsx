@@ -4,40 +4,40 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch
-} from 'remix'
-import { Header } from '~app/components/header'
-import { Footer } from '~app/components/footer'
-import globalStylesUrl from '~app/global.css'
+  useCatch,
+} from "@remix-run/react";
+import { Header } from "./components/header";
+import { Footer } from "./components/footer";
+import globalStylesUrl from "./global.css";
 
 export function links() {
   return [
-    { rel: 'stylesheet', href: globalStylesUrl },
+    { rel: "stylesheet", href: globalStylesUrl },
     {
-      rel: 'preload',
-      href: '/static/fonts/inter-var-latin.woff2',
-      as: 'font',
-      type: 'font/woff2',
-      crossOrigin: 'anonymous'
-    }
-  ]
+      rel: "preload",
+      href: "/static/fonts/inter-var-latin.woff2",
+      as: "font",
+      type: "font/woff2",
+      crossOrigin: "anonymous",
+    },
+  ];
 }
 
 export function meta() {
   return {
-    viewport: 'width=device-width,initial-scale=1',
-    title: 'My Remix',
-    description: 'My Remix Template. Cloudflare Workers + Tailwind',
-    robots: 'noindex'
-  }
+    charset: "utf-8",
+    viewport: "width=device-width,initial-scale=1",
+    title: "My Remix",
+    description: "My Remix Template. Cloudflare Workers + Tailwind",
+    robots: "noindex",
+  };
 }
 
 export function ErrorBoundary({ error }) {
-  console.error(error)
+  console.error(error);
   return (
     <html lang="en">
       <head>
-        <meta charSet="utf-8" />
         <Meta />
         <Links />
       </head>
@@ -53,7 +53,7 @@ export function ErrorBoundary({ error }) {
         </div>
       </body>
     </html>
-  )
+  );
 }
 
 function Document({ children }) {
@@ -72,21 +72,21 @@ function Document({ children }) {
         <Scripts />
       </body>
     </html>
-  )
+  );
 }
 
 export function CatchBoundary() {
-  const { status, statusText } = useCatch()
+  const { status, statusText } = useCatch();
   return (
     <Document>
       <div className="max-w-sm mx-auto px-4 py-20">
         <h1 className="text-4xl font-bold text-center">{status}</h1>
         <h2 className="text-2xl text-center">
-          {status === 404 ? 'Not Found.' : statusText}
+          {status === 404 ? "Not Found." : statusText}
         </h2>
       </div>
     </Document>
-  )
+  );
 }
 
 export default function App() {
@@ -94,5 +94,5 @@ export default function App() {
     <Document>
       <Outlet />
     </Document>
-  )
+  );
 }

@@ -5,41 +5,35 @@
   "author": "Michael McClintock <michael.mcclintock@hey.com>",
   "license": "MIT",
   "private": true,
+  "sideEffects": false,
   "engines": {
     "node": ">=14"
   },
   "dependencies": {
-    "@remix-run/cloudflare-workers": "1.1.0",
-    "@remix-run/react": "1.1.0",
-    "mime": "^3.0.0",
+    "@remix-run/cloudflare": "^1.4.3",
+    "@remix-run/react": "^1.4.3",
     "nanoid": "^3.1.30",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "remix": "1.1.0"
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@remix-run/dev": "1.1.0",
-    "@tailwindcss/forms": "^0.4.0",
-    "@tailwindcss/typography": "^0.5.0",
-    "concurrently": "^6.4.0",
-    "esbuild": "0.13.14",
-    "miniflare": "^2.0.0-rc.3",
-    "tailwindcss": "^3.0.7"
+    "@remix-run/dev": "^1.4.3",
+    "@remix-run/serve": "^1.4.3",
+    "@tailwindcss/forms": "^0.4.1",
+    "@tailwindcss/typography": "^0.5.2",
+    "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.0.24",
+    "wrangler": "^0.0.28"
   },
   "scripts": {
-    "postinstall": "remix setup cloudflare-workers",
-    "build": "tailwindcss -i src/global.css -o app/global.css --minify && remix build && esbuild --bundle src/worker.js --outfile=public/_worker.js --define:process.env.NODE_ENV='\"production\"' --format=esm --minify",
-    "build:wrangler": "yarn build --external:__STATIC_CONTENT_MANIFEST",
-    "watch:css": "npx tailwindcss -i src/global.css -o app/global.css -w",
-    "watch:remix": "remix watch",
-    "watch:worker": "esbuild --bundle src/worker.js --outfile=public/_worker.js --define:process.env.NODE_ENV='\"development\"' --external:__STATIC_CONTENT_MANIFEST --format=esm --watch",
-    "watch:miniflare": "miniflare --build-command -w",
-    "dev": "concurrently -n tailwind,remix,worker,miniflare \"yarn watch:css\" \"yarn watch:remix\" \"yarn watch:worker\" \"yarn watch:miniflare\""
-  },
-  "sideEffects": false,
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "none"
+    "css:build": "tailwindcss -i app/styles.css -o app/global.css --minify",
+    "css:watch": "npx tailwindcss -i app/styles.css -o app/global.css -w",
+    "remix:build": "CF_PAGES=1 remix build",
+    "remix:watch": "CF_PAGES=1 remix watch",
+    "remix:dev": "remix dev",
+    "wrangler:dev": "wrangler pages dev public --do EXAMPLE=ExampleDO",
+    "build": "run-s css:build remix:build",
+    "dev-cf": "run-p css:watch remix:watch wrangler:dev",
+    "dev": "run-p css:watch remix:dev"
   }
 }
