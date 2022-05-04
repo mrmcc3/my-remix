@@ -1,11 +1,13 @@
+const isCF = process.env.CF_PAGES === '1'
+
 /**
- * @type {import('@remix-run/dev/config').AppConfig}
+ * @type {import('@remix-run/dev').AppConfig}
  */
 module.exports = {
-  appDirectory: 'app',
   assetsBuildDirectory: 'public/static/build',
   publicPath: '/static/build/',
-  serverBuildDirectory: 'build',
-  serverModuleFormat: 'esm',
-  devServerBroadcastDelay: 1000
+  ignoredRouteFiles: ['**/.*'],
+  serverBuildPath: isCF ? 'public/_worker.js' : '.cache/dev.js',
+  server: isCF ? 'app/worker.js' : undefined,
+  serverBuildTarget: isCF ? 'cloudflare-pages' : 'node-cjs'
 }

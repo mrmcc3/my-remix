@@ -1,74 +1,60 @@
-import { json } from 'remix'
-import { useLoaderData } from '@remix-run/react'
+import { json } from "@remix-run/cloudflare";
+import { useLoaderData } from "@remix-run/react";
 
 export async function loader({ params: { name }, request, context: { env } }) {
-  const { colo, city } = request.cf
-  const cfRay = request.headers.get('cf-ray')
+  const { colo, city } = request.cf;
+  const cfRay = request.headers.get("cf-ray");
 
-  if (!name) throw new Response('no name provided')
+  if (!name) throw new Response("no name provided");
 
   // fetch some data from a unique durable object
-  const doId = env.EXAMPLE.idFromName(name)
+  const doId = env.EXAMPLE.idFromName(name);
   const res = await env.EXAMPLE.get(doId).fetch(
-    'https://michael.workers.dev/example-do',
+    "https://michael.workers.dev/example-do",
     {
-      method: 'POST',
-      body: JSON.stringify({ colo })
+      method: "POST",
+      body: JSON.stringify({ colo }),
     }
-  )
-  const data = await res.json()
+  );
+  const data = await res.json();
 
   return json({
-    envName: env.NAME,
     colo,
     city,
-    isolateId,
     cfRay,
     name,
-    ...data
-  })
+    ...data,
+  });
 }
 
 export function meta() {
   return {
-    title: 'DO Example',
-    description: 'Reading from durable objects'
-  }
+    title: "DO Example",
+    description: "Reading from durable objects",
+  };
 }
 
-const spanStyle = 'bg-gray-100 px-2 py-0.5 rounded font-semibold font-mono'
+const spanStyle = "bg-gray-100 px-2 py-0.5 rounded font-semibold font-mono";
 
 export default function DO() {
-  const {
-    envName,
-    city,
-    colo,
-    isolateId,
-    cfRay,
-    name,
-    doIsolateId,
-    currentColo,
-    creationColo,
-    counts
-  } = useLoaderData()
+  const { city, colo, cfRay, name, currentColo, creationColo, counts } =
+    useLoaderData();
   return (
     <>
       <p>
-        You requested this page from{' '}
+        You requested this page from{" "}
         <span className={spanStyle}>{city || colo}</span>.
       </p>
       <p>
-        A cloudflare worker in the <span className={spanStyle}>{colo}</span>{' '}
-        datacenter rendered this page in a V8 isolate with id{' '}
-        <span className={spanStyle}>{isolateId}</span>.
+        A cloudflare worker in the <span className={spanStyle}>{colo}</span>{" "}
+        datacenter rendered this page.
       </p>
       <p>
-        The worker made a request to the Durable Object named{' '}
+        The worker made a request to the Durable Object named{" "}
         <span className={spanStyle}>{name}</span> which is running in the
         <span className={spanStyle}>{currentColo}</span> datacenter and was
         first created in
-        <span className={spanStyle}>{creationColo}</span>. It's running in the
-        V8 isolate <span className={spanStyle}>{doIsolateId}</span>
+        <span className={spanStyle}>{creationColo}</span>.
       </p>
 
       <p>
@@ -86,9 +72,8 @@ export default function DO() {
       </ul>
 
       <p>
-        This is the <span className={spanStyle}>{envName}</span> environment.
         request id is <span className={spanStyle}>{cfRay}</span>
       </p>
     </>
-  )
+  );
 }
