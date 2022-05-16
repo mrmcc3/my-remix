@@ -8,7 +8,7 @@ import {
 } from "@remix-run/react";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
-import globalStylesUrl from "./global.css";
+import globalStylesUrl from "./generated.css";
 
 export function links() {
   return [

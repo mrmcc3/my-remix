@@ -3,4 +3,4 @@ node_modules
 /.mf
 /public/static/build
 /public/_worker.js*
-/app/global.css
+/app/generated.css

@@ -9,11 +9,21 @@
   "engines": {
     "node": ">=14"
   },
+  "scripts": {
+    "build:clean": "rimraf public/static/build public/_worker.js* app/generated.css",
+    "build:tailwind": "tailwindcss -i app/styles.css -o app/generated.css --minify",
+    "build:remix": "remix build",
+    "build": "run-s build:clean build:tailwind build:remix",
+    "dev:tailwind": "npx tailwindcss -i app/styles.css -o app/generated.css -w",
+    "dev:remix": "remix watch",
+    "dev:wrangler": "wrangler pages dev public --do EXAMPLE=ExampleDO --kv KV",
+    "dev": "run-p dev:*"
+  },
   "dependencies": {
     "@remix-run/cloudflare": "^1.4.3",
     "@remix-run/react": "^1.4.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.4.3",
@@ -21,18 +31,8 @@
     "@tailwindcss/forms": "^0.4.1",
     "@tailwindcss/typography": "^0.5.2",
     "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
     "tailwindcss": "^3.0.24",
     "wrangler": "^2.0.0"
-  },
-  "scripts": {
-    "css:build": "tailwindcss -i app/styles.css -o app/global.css --minify",
-    "css:watch": "npx tailwindcss -i app/styles.css -o app/global.css -w",
-    "remix:build": "CF_PAGES=1 remix build",
-    "remix:watch": "CF_PAGES=1 remix watch",
-    "remix:dev": "remix dev",
-    "wrangler:dev": "wrangler pages dev public --do EXAMPLE=ExampleDO --kv KV",
-    "build": "run-s css:build remix:build",
-    "dev-cf": "run-p css:watch remix:watch wrangler:dev",
-    "dev": "run-p css:watch remix:dev"
   }
 }

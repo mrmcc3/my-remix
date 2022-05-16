@@ -2,9 +2,7 @@ import { createRequestHandler } from "@remix-run/cloudflare";
 import * as build from "@remix-run/dev/server-build";
 import { decodeCacheControl, encodeCacheControl } from "./utils";
 
-const remixHandler = createRequestHandler(build, {
-  mode: process.env.NODE_ENV,
-});
+const remixHandler = createRequestHandler(build, process.env.NODE_ENV);
 
 async function cacheResponse(req, res) {
   const cacheControlHeader = res.headers.get("cache-control");
@@ -31,14 +29,7 @@ export default {
   async fetch(req, env, ctx) {
     // assets
     const asset = await env.ASSETS.fetch(req);
-    if (asset.status < 400) {
-      const url = new URL(req.url);
-      const res = new Response(asset.body, asset);
-      if (url.pathname.startsWith("/static")) {
-        res.headers.set("cache-control", "public, max-age=31536000, immutable");
-      }
-      return res;
-    }
+    if (asset.status < 400) return asset;
 
     // cache
     if (req.headers.has("if-none-match")) {
