@@ -28,8 +28,8 @@ async function cacheResponse(req, res) {
 export default {
   async fetch(req, env, ctx) {
     // assets
-    const asset = await env.ASSETS.fetch(req);
-    if (asset.status < 400) return asset;
+    const asset = await env.ASSETS.fetch(req.clone());
+    if (asset && asset.status >= 200 && asset.status < 400) return asset;
 
     // cache
     if (req.headers.has("if-none-match")) {
