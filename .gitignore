@@ -4,3 +4,4 @@ node_modules
 /public/static/build
 /public/_worker.js*
 /app/generated.css
+/.idea

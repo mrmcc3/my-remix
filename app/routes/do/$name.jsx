@@ -1,8 +1,8 @@
 import { json } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 
-export async function loader({ params: { name }, request, context: { env } }) {
-  const { colo, city } = request.cf;
+export async function loader({ params: { name }, request, context: { env, cf } }) {
+  const { colo, city } = cf;
   const cfRay = request.headers.get("cf-ray");
 
   if (!name) throw new Response("no name provided");

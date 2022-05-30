@@ -64,7 +64,7 @@ export default {
     }
 
     // remix
-    const res = await remixHandler(req, { env });
+    const res = await remixHandler(req, { env, cf: req.cf });
     ctx.waitUntil(cacheResponse(req, res));
     return res;
   },
