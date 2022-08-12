@@ -3,5 +3,6 @@ node_modules
 /.mf
 /public/static/build
 /public/_worker.js*
+/public/_assets
 /app/generated.css
 /.idea
